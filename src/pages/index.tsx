@@ -11,6 +11,8 @@ export default function Home() {
 
   const getRandomCashback = async () => {
     const userId = localStorage.getItem("userId")
+    console.log(userId);
+    
     if (userId) {
       setLoading(true)
       const res = await fetch(process.env.NEXT_PUBLIC_API!, {
@@ -26,13 +28,16 @@ export default function Home() {
     }
     else {
       setLoading(true)
-      const userId = (Math.random() * 1e18).toString();
-      localStorage.setItem("userId", userId)
+      const newId = (Math.random() * 1e18).toString();
+      localStorage.setItem("userId", newId)
       const res = await fetch("http://localhost:5000", {
         method: "post",
         body: JSON.stringify({
-          id:userId
-      })
+          id:newId
+      }),
+      headers:{
+        "Content-Type":"application/json"
+      }
       })
       const data = await res.json()
       console.log(data.result);
