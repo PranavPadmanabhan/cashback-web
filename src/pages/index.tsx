@@ -10,8 +10,8 @@ export default function Home() {
   const [result, setResult] = useState<string>("")
 
   const getRandomCashback = async () => {
+  try {
     const userId = localStorage.getItem("userId")!
-    console.log(userId);
     
     if (userId) {
       setLoading(true)
@@ -45,6 +45,12 @@ export default function Home() {
     }
 
 
+  } catch (error) {
+    console.clear()
+    if(window){
+      window.location.reload()
+    }
+  }
   }
 
   return (
