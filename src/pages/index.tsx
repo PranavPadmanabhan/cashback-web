@@ -10,7 +10,7 @@ export default function Home() {
   const [result, setResult] = useState<string>("")
 
   const getRandomCashback = async () => {
-    const userId = localStorage.getItem("userId")
+    const userId = localStorage.getItem("userId")!
     console.log(userId);
     
     if (userId) {
